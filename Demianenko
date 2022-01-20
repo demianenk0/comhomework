@@ -1,0 +1,33 @@
+package Lesson1.home;
+
+public class Lesson1 {
+    public static void main(String args[]) {
+        int a = 4, b = 5, c = 2;
+        System.out.print("Последовательность -");
+        for (int i = 0; i < a + b + c; i++) {
+            while (i == a || i == b || i == c) {
+                System.out.print(" "+i);
+                break;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+package Lesson1.home;
+
+public class Lesson1 {
+    public static void main(String args []) {
+                int a = 5;
+                System.out.print("Число " + a);
+                if( a % 2 == 0) {
+                    System.out.println(" - четное");
+                } else {
+                    System.out.println(" - нечетное");
+                }
+    }
+}
