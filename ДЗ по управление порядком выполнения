@@ -1,0 +1,125 @@
+public class BreakeDemo {
+
+    public static void main(String args[]) {
+    	for (int i=1; i <= 5; i++) {
+        System.out.print (i + " ");
+    	}
+	}
+}
+
+
+
+
+
+
+
+public class BreakeDemo {
+
+    public static void main(String args[]) {
+        for (int i=5; i >= 1; i--) {
+        System.out.print (i + " ");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+public class BreakeDemo {
+
+    public static void main(String args[]) {
+            int i = 3; {
+                for (int j = 1; j <= 10; j++) {
+                System.out.println(i + "x" + j + "=" + (i * j));
+            }
+        }
+    }
+}
+
+
+
+
+
+public class BreakeDemo {
+
+public static void main(String args[]) {
+        System.out.print("Введите любое целое положительное число: ");
+            Scanner scanner = new Scanner(System.in);
+            int n = scanner.nextInt();
+            int sum = 0;
+            for (int i=1; i<= n; i++){
+            sum = sum + i;
+            }
+            System.out.println("Ваш результат: "+ sum);
+    }
+}
+
+
+
+public class BreakeDemo {
+
+public static void main(String args[]) {
+        for (int i=7; i<= 98; i +=7) {
+        System.out.print (i + " ");
+        }
+    }
+}
+
+
+
+
+
+public class BreakeDemo {
+
+    public static void main(String args[]) {
+        for (int i=1; i<=512; i *=2) {
+        System.out.print (i + " ");
+        }
+    }
+}
+
+
+
+public class BreakeDemo {
+
+    public static void main(String args[]) {
+        String answer;
+        boolean exit;
+        System.out.println ("Что это такое: синий, большой, с усами и полностью набит зайцами?");
+        System.out.println("Правильный ответ нужно писать с большой буквы!!!");
+        Scanner inputAnswer = new Scanner (System.in);
+
+        exit = false;
+        for(int i = 1; i <= 3; i++){
+            if (exit == true) 
+                break;
+            answer = inputAnswer.next ();
+            switch (answer){
+                case ("Троллейбус"):
+                    System.out.println ("Правильно");
+                    exit = true;
+                    break;
+                case ("Сдаюсь"):
+                    System.out.println ("Правильный ответ: Троллейбус");
+                    exit = true;
+                    break;
+                    default:
+                    System.out.println("Подумай ещё.");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
