@@ -1,59 +1,96 @@
-package com.itea.roman.lection7;
-import java.util.Scanner;
+package com.itea.roman.lection10;
 
-public class Login {
-    private static Object Login;
+import com.itea.roman.lection10.WrongLoginException;
+import com.itea.roman.lection10.WrongPasswordException;
 
-    public static void main(String[] args) {
-        User Login1 = new User("login1", "password1");
-        User Login2 = new User("login2", "password2");
-        User Login3 = new User("login3", "password3");
-        Scanner input = new Scanner(System.in);
-        String Username;
-        String Pass;
-        String Login = Login1.getLogin();
-        String Password = Login1.getPassword();
-        System.out.println("Введите имя пользователя: ");
-        Username = input.nextLine();
-        System.out.println("Введите пароль: ");
-        Pass = input.nextLine();
-        if(Username.equals(Login) && Pass.equals(Password)){
-            System.out.println("Имя пользователя и пароль совпадают");
-        } else {
-            System.out.println("Имя пользователя или пароль не совпадают");
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+    public class Login extends JFrame implements ActionListener {
+        private JButton submit;
+        private JPanel rootPanel;
+        private JLabel loginLabel;
+        private JLabel passwordLabel;
+        private JLabel confirmPasswordLabel;
+        private JTextField login;
+        private JTextField password;
+        private JTextField confirmPassword;
+
+        public Login() {
+            createLabels();
+            createTextFields();
+            createButton();
+            createPanel();
+            add(rootPanel, BorderLayout.CENTER);
+            add(submit, BorderLayout.SOUTH);
+            submit.addActionListener(this);
+            createFrame();
+        }
+
+        private void createFrame() {
+            setTitle("");
+            setSize(300, 130);
+            setLocationRelativeTo(null);
+            setResizable(false);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setVisible(true);
+        }
+
+        private void createLabels() {
+            loginLabel = new JLabel("  Login:");
+            passwordLabel = new JLabel("  Password:");
+            confirmPasswordLabel = new JLabel("  Confirm password:");
+        }
+
+        private void createTextFields() {
+            login = new JTextField(15);
+            password = new JPasswordField(15);
+            confirmPassword = new JPasswordField(15);
+            textFieldsAlignment(CENTER_ALIGNMENT, login, password, confirmPassword);
+        }
+
+        private void textFieldsAlignment(final float alignment, JTextField... fields) {
+            for (JTextField field : fields) {
+                field.setHorizontalAlignment((int) alignment);
+            }
+        }
+
+        private void createButton() {
+            submit = new JButton("Submit");
+        }
+
+        private void createPanel() {
+            rootPanel = new JPanel(new GridLayout(3, 1));
+            rootPanel.add(loginLabel);
+            rootPanel.add(login);
+            rootPanel.add(passwordLabel);
+            rootPanel.add(password);
+            rootPanel.add(confirmPasswordLabel);
+            rootPanel.add(confirmPassword);
+        }
+
+        public void actionPerformed(ActionEvent ae) {
+            try {
+                checkLogInInfo(login.getText(), password.getText(), confirmPassword.getText(), "[\\w]{1,20}");
+                JOptionPane.showMessageDialog(this, "Login and password are correct!",
+                        "User login&password confirmation", JOptionPane.PLAIN_MESSAGE);
+            } catch (WrongLoginException | WrongPasswordException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(),
+                        "UserException", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        private boolean checkLogInInfo(String login, String password, String confirmPassword, String regex)
+                throws WrongLoginException, WrongPasswordException {
+            if (!login.matches(regex)) {
+                throw new WrongLoginException("Incorrect login");
+            } else if (!password.matches(regex) ||
+                    !confirmPassword.matches(regex) ||
+                    !password.equals(confirmPassword)) {
+                throw new WrongPasswordException("Incorrect password");
+            }
+            return true;
         }
     }
-}
-
-class User{
-    private String Login;
-    private String Password;
-
-    public User(String Login, String Password) {
-        this.Login = Login;
-        this.Password = Password;
-    }
-
-    public void Login(String Login, String Password) {
-        this.Login = Login;
-        this.Password = Password;
-    }
-
-    public String getLogin() {
-        return Login;
-    }
-
-    public void setLogin(String Login) {
-        this.Login = Login;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String Password) {
-        this.Password = Password;
-    }
-}
-
 
